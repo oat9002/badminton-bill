@@ -9,11 +9,11 @@ user
     - created_when
 transaction
     - id
+    - creditor - user
     - paid - boolean
     - amount - decimal
-    - users - list
-        - id
-        - name - string
+    - debtors - list
+        - id - user id
         - paid - boolean
         - amount - decimal
     - created_when - datetime
