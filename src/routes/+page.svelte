@@ -1,25 +1,30 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { goto } from '$app/navigation';
-    import { userStore } from '../store/userStore';
-    import { user } from '../types/user';
+	import type { User } from "$lib/model/User";
+	import { addUser } from "$lib/service/database";
 
-    let users: user[] = [];
+    export let data: { users: User[] };  
+    let userName: string = "";  
 
-    onMount(() => {
-        users = userStore;
-    });
+    function onUserNameChange(event: Event) {
+        userName = (event.target as HTMLInputElement).value;
+    }
 
-    function addUser() {
-        userStore.push({ name: 'New user' });
+    function onUserAddClick() {
+        addUser(userName);
     }
 </script>
 
 <h1>Welcome to badminton bill</h1>
+<h2>Users</h2>
+<ul>
+    {#each data.users as user}
+        <li>{user.name}</li>
+    {/each}
+</ul>
 <h2>Add user</h2>
 <div>
-    <input type="text" placeholder="Name" class="input input-bordered w-full max-w-xs" />
-    <button class="btn">Add</button>
+    <input type="text" placeholder="Name" class="input input-bordered w-full max-w-xs" on:change={onUserNameChange} />
+    <button class="btn" on:click={() => onUserAddClick}>Add</button>
 </div>
 
 
