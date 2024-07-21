@@ -6,16 +6,16 @@
 user
     - id
     - name - string
-    - created_when
 transaction
     - id
-    - creditor - user
+    - creditor - string
     - paid - boolean
     - amount - decimal
     - debtors - list
-        - id - user id
+        - name - string
         - paid - boolean
         - amount - decimal
+    - occured_at - datetime
     - created_when - datetime
     - lastupdated_when - datetime
 ```
