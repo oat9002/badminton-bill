@@ -1,7 +1,9 @@
 import { getUsers } from '$lib/service/database';
 
-export function load() {
+export async function load() {
+	const users = await getUsers();
+
 	return {
-		users: getUsers()
+		users
 	};
 }
